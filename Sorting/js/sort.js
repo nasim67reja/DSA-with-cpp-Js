@@ -43,8 +43,25 @@ const bubbleSort = (arr, size) => {
   return arr;
 };
 
+// Insertion Sort
+
+const insertionSort = (arr, size) => {
+  for (let i = 1; i < size; i++) {
+    let temp = arr[i];
+    let j = i - 1;
+
+    while (j >= 0) {
+      if (arr[j] > temp) arr[j + 1] = arr[j];
+      else break;
+      j--;
+    }
+    arr[j + 1] = temp;
+  }
+  return arr;
+};
+
 const arr = [5, 2, 15, 4, 12, 3, 7];
 
-const sortedArr = bubbleSort(arr, arr.length);
+const sortedArr = insertionSort(arr, arr.length);
 
 console.log(sortedArr);
