@@ -10,7 +10,7 @@ const selectionSort = (arr, size) => {
     for (let j = i + 1; j < size; j++) {
       if (arr[j] < arr[minIndex]) minIndex = j;
     }
-    [arr[minIndex], arr[i]] = [arr[i], arr[minIndex]];
+    if (i !== minIndex) [arr[minIndex], arr[i]] = [arr[i], arr[minIndex]];
   }
   return arr;
 };
@@ -29,17 +29,22 @@ const selectionSortDecreasingOrder = (arr, size) => {
 
 // Bubble sort
 const bubbleSort = (arr, size) => {
+  let swapped = false;
   for (let i = 0; i < size - 1; i++) {
-    let bigIndex = i;
-    for (let j = i + 1; j < size - 1; j++) {
-      if (arr[bigIndex] > arr[j])
-        [arr[minIndex], arr[j]] = [arr[j], arr[minIndex]];
+    for (let j = 0; j < size - (i + 1); j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swapped = true;
+      }
     }
+    //checking best case
+    if (swapped === false) break;
   }
+  return arr;
 };
 
-const arr = [5, 2, 4, 12, 3, 7];
+const arr = [5, 2, 15, 4, 12, 3, 7];
 
-const sortedArr = selectionSortDecreasingOrder(arr, arr.length);
+const sortedArr = bubbleSort(arr, arr.length);
 
 console.log(sortedArr);
